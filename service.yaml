@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sport-chirp-tweetstats
+spec:
+  type: NodePort
+  ports:
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+      nodePort: 30500
+  selector:
+    app: sport-chirp-tweetstats
+
+# START BACK HERE: send the node.js image to the registry in the right way, then do the kubectl apply command!

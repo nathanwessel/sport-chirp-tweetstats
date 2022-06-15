@@ -1,0 +1,28 @@
+# source: https://kubernetes.io/docs/tasks/
+# configure-pod-container/configure-liveness-
+# readiness-startup-probes/
+
+# TCP health check on startup, periodically
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sport-chirp-tweetstats
+  labels:
+    app: sport-chirp-tweetstats
+spec:
+  containers:
+  - name: sport-chirp-tweetstats
+    image: localhost:5000/node-web-app
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 9000
+    readinessProbe:
+      tcpSocket:
+        port: 9000
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    livenessProbe:
+      tcpSocket:
+        port: 9000
+      initialDelaySeconds: 15
+      periodSeconds: 20

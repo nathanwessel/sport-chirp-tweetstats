@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+    name: sport-chirp-tweetstats
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: sport-chirp-tweetstats
+    template:
+        metadata:
+            labels:
+                app: sport-chirp-tweetstats
+        spec:
+            containers:
+                - name: sport-chirp-tweetstats
+                  image: localhost:5000/node-web-app
+                  imagePullPolicy: Always
+                  ports:
+                    - containerPort: 9000
+            restartPolicy: Always
